@@ -62,3 +62,11 @@ header {
 .nav-links ul li a:hover {
     color: #007bff;
 }
+
+/* Full-width image styling */
+.full-width-image img {
+    width: 100%; /* Stretches the image to the full width of the viewport */
+    height: 660px; /* Sets the height for desktop */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
