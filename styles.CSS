@@ -46,6 +46,10 @@ header {
     width: 100px; /* Adjust size to fit your logo */
 }
 
+.nav-right {
+    /* You can adjust margins here */
+}
+
 /* Add custom left/right margins for the header */
 .navbar {
     margin-left: 50px; /* Adjust this as per your design */
