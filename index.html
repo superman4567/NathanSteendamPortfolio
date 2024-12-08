@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <!-- Updated link to the CSS file -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unity WebGL Build</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-logo">
-                <img src="portfolio-images/logoBlack.png" alt="Logo" class="logo">
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <div id="unity-container">
+    <canvas id="unity-canvas"></canvas>
+    <div id="loading-bar">
+      <div id="loading-bar-full"></div>
+    </div>
+  </div>
 
-    <!-- Full-width image section -->
-    <section class="full-width-image">
-        <img src="portfolio-images/TempWallpaper.png" alt="Banner Image">
-    </section>
+  <script src="UnityBuild/Build/UnityBuild.loader.js"></script>
+  <script>
+    const unityInstance = UnityLoader.instantiate("unity-canvas", "UnityBuild/Build/Build.json", {
+      onProgress: (instance, progress) => {
+        document.getElementById("loading-bar-full").style.width = (progress * 100) + "%";
+      }
+    });
+  </script>
 </body>
 </html>
