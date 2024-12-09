@@ -8,9 +8,10 @@
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
 </head>
 <body>
+  <!-- Unity WebGL canvas -->
   <canvas id="unity-canvas"></canvas>
   <script>
-    // Configuration for Unity
+    // Unity WebGL configuration
     const buildUrl = "UnityBuild/Build";
     const loaderUrl = `${buildUrl}/UnityBuild.loader.js`;
     const config = {
@@ -24,18 +25,15 @@
       productVersion: "0.1.0",
     };
 
-    // Create Unity Instance and enable fullscreen on load
+    // Create Unity Instance
     const canvas = document.querySelector("#unity-canvas");
-
     const script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
-        // Optional: Log progress to console or update a progress bar
         console.log(`Loading progress: ${progress * 100}%`);
       }).then((unityInstance) => {
-        // Set fullscreen automatically on load
-        unityInstance.SetFullscreen(1);
+        unityInstance.SetFullscreen(1); // Enable fullscreen automatically
       }).catch((message) => {
         alert(`Error: ${message}`);
       });
