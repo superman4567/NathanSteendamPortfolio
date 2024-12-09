@@ -58,18 +58,18 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/UnityBuild.loader.js";
-    var config = {
-      arguments: [],
-      dataUrl: buildUrl + "/UnityBuild.data.gz",        // Change .br to .gz
-      frameworkUrl: buildUrl + "/UnityBuild.framework.js.gz", // Change .br to .gz
-      codeUrl: buildUrl + "/UnityBuild.wasm.gz",         // Change .br to .gz
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "DefaultCompany",
-      productName: "PortfolioGame",
-      productVersion: "0.1.0",
-      showBanner: unityShowBanner,
-    };
+      var loaderUrl = buildUrl + "/Build 1.0.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/Build 1.0.data.gz",
+        frameworkUrl: buildUrl + "/Build 1.0.framework.js.gz",
+        codeUrl: buildUrl + "/Build 1.0.wasm.gz",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "PortfolioGame",
+        productVersion: "0.1.0",
+        showBanner: unityShowBanner,
+      };
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
       // Mobile device: fill the whole screen
