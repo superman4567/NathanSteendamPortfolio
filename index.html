@@ -55,9 +55,9 @@
       var loaderUrl = buildUrl + "/Build 1.0.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Build 1.0.data.gz",
-        frameworkUrl: buildUrl + "/Build 1.0.framework.js.gz",
-        codeUrl: buildUrl + "/Build 1.0.wasm.gz",
+        dataUrl: buildUrl + "/Build 1.0.data.unityweb",
+        frameworkUrl: buildUrl + "/Build 1.0.framework.js.unityweb",
+        codeUrl: buildUrl + "/Build 1.0.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "PortfolioGame",
@@ -98,8 +98,8 @@
 
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        canvas.style.width = "1920px";
+        canvas.style.height = "1080px";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
