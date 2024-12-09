@@ -1,0 +1,4 @@
+*.data.br binary
+*.wasm.br binary
+*.framework.js.br binary
+*.loader.js text
