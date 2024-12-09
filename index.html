@@ -2,25 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
   <title>Unity WebGL Build</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
 </head>
 <body>
-  <div id="unity-container">
+  <div id="unity-container" class="unity-mobile">
     <canvas id="unity-canvas"></canvas>
-    <div id="loading-bar">
-      <div id="loading-bar-full"></div>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
     </div>
+    <div id="unity-warning"></div>
   </div>
 
-  <script src="UnityBuild/Build/UnityBuild.loader.js"></script>
   <script>
-    const unityInstance = UnityLoader.instantiate("unity-canvas", "UnityBuild/Build/Build.json", {
-      onProgress: (instance, progress) => {
-        document.getElementById("loading-bar-full").style.width = (progress * 100) + "%";
+    // Function to show error or warning banners
+    function unityShowBanner(msg, type) {
+      const warningBanner = document.querySelector("#unity-warning");
+      function updateBannerVisibility() {
+        warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
       }
-    });
+      const div = document.createElement('div');
+      div.innerHTML = msg;
+      warningBanner.appendChild(div);
+      if (type === 'error') div.style = 'background: red; padding: 10px;';
+      else {
+        if (type === 'warning') div.style = 'background: yellow; padding: 10px;';
+        setTimeout(() => {
+          warningBanner.removeChild(div);
+          updateBannerVisibility();
+        }, 5000);
+      }
+      updateBannerVisibility();
+    }
+
+    // Configuration for Unity
+    const buildUrl = "UnityBuild/Build";
+    const loaderUrl = `${buildUrl}/UnityBuild.loader.js`;
+    const config = {
+      arguments: [],
+      dataUrl: `${buildUrl}/UnityBuild.data.br`,
+      frameworkUrl: `${buildUrl}/UnityBuild.framework.js.br`,
+      codeUrl: `${buildUrl}/UnityBuild.wasm.br`,
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "PortfolioGame",
+      productVersion: "0.1.0",
+      showBanner: unityShowBanner,
+      devicePixelRatio: 1, // Lower resolution for better performance on mobile
+    };
+
+    // Create Unity Instance and enable fullscreen on load
+    const canvas = document.querySelector("#unity-canvas");
+    document.querySelector("#unity-loading-bar").style.display = "block";
+
+    const script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        document.querySelector("#unity-progress-bar-full").style.width = `${progress * 100}%`;
+      }).then((unityInstance) => {
+        document.querySelector("#unity-loading-bar").style.display = "none";
+        // Set fullscreen automatically on load
+        unityInstance.SetFullscreen(1);
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
   </script>
 </body>
 </html>
