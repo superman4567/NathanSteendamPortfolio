@@ -14,3 +14,27 @@ body { padding: 0; margin: 0 }
 #unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
 #unity-fullscreen-button { cursor:pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Use dynamic viewport height for the Unity container */
+  #unity-container {
+    width: 100%;
+    min-height: 100dvh; /* Dynamic viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* Adjust background as needed */
+  }
+  
+  /* Ensure the canvas scales to fit the container */
+  #unity-canvas {
+    width: 100%;
+    height: 100%; /* Scale canvas to fill the container */
+  }
