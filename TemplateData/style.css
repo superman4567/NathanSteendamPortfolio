@@ -30,7 +30,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black; /* Adjust background as needed */
+    background-color: rgb(17, 17, 17); /* Adjust background as needed */
   }
   
   /* Ensure the canvas scales to fit the container */
